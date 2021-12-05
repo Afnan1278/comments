@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes)=>{
-    const Posts = sequelize.define("Posts",{
+    const Comments = sequelize.define("Comments",{
         name:{
             type: DataTypes.STRING,
             allowNull: false
@@ -8,10 +8,11 @@ module.exports = (sequelize, DataTypes)=>{
             type: DataTypes.STRING,
             allowNull: false
         },
-        // username: {
-        //     type:DataTypes.STRING,
-        //     allowNull:false
-        // }
+        parentId: { 
+            type: DataTypes.INTEGER
+        },
     })
-    return Posts
+    Comments.hasMany(Comments, {foreignKey: 'parentId'}) 
+    
+    return Comments
 }

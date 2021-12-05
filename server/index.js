@@ -6,12 +6,16 @@ const db = require("./models");
 app.use(cors());
 app.use(express.json());
 // Routes
-const PostRouter = require('./routes/Posts')
-app.use('/posts', PostRouter)
+const CommentRouter = require('./routes/Comments')
+app.use('/comments', CommentRouter)
+// const RepliesRouter = require('./routes/Replies')
+// app.use('/replies', RepliesRouter)
 
 
 db.sequelize.sync().then(() => {
     app.listen(3001, ()=>{
         console.log("server started at port 3001")
     })
+}).catch(err=>{
+    console.log("error::",err)
 })
